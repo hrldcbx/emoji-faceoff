@@ -1,12 +1,16 @@
 import { useState } from 'react';
 
-export default function StartScreen({ onStart }) {
+export default function StartScreen({ onStart, theme, onToggleTheme }) {
   const [rounds, setRounds] = useState(10);
 
   const roundOptions = [5, 10, 15, 20];
 
   return (
     <div className="screen start-screen">
+      <button className="theme-toggle" onClick={onToggleTheme} aria-label="Toggle theme">
+        {theme === 'light' ? '🌙' : '☀️'}
+      </button>
+
       <div className="logo">
         <span className="logo-emoji">😜</span>
         <h1>Emoji Faceoff</h1>

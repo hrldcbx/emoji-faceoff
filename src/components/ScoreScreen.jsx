@@ -1,13 +1,16 @@
+import { useTranslation } from '../App';
+
 export default function ScoreScreen({ score, skipped, total, onPlayAgain }) {
+  const { t } = useTranslation();
   const percentage = Math.round((score / total) * 100);
 
   const getMessage = () => {
-    if (percentage === 100) return { emoji: '🏆', text: 'Perfect game!' };
-    if (percentage >= 80) return { emoji: '🎉', text: 'Amazing!' };
-    if (percentage >= 60) return { emoji: '😄', text: 'Great job!' };
-    if (percentage >= 40) return { emoji: '😊', text: 'Nice try!' };
-    if (percentage >= 20) return { emoji: '🤔', text: 'Keep practicing!' };
-    return { emoji: '😅', text: 'Better luck next time!' };
+    if (percentage === 100) return { emoji: '🏆', text: t.results.perfect };
+    if (percentage >= 80) return { emoji: '🎉', text: t.results.amazing };
+    if (percentage >= 60) return { emoji: '😄', text: t.results.great };
+    if (percentage >= 40) return { emoji: '😊', text: t.results.nice };
+    if (percentage >= 20) return { emoji: '🤔', text: t.results.practice };
+    return { emoji: '😅', text: t.results.again };
   };
 
   const message = getMessage();
@@ -20,20 +23,20 @@ export default function ScoreScreen({ score, skipped, total, onPlayAgain }) {
       <div className="score-breakdown">
         <div className="score-item correct">
           <span className="score-number">{score}</span>
-          <span className="score-label">Correct</span>
+          <span className="score-label">{t.correct}</span>
         </div>
         <div className="score-item skipped">
           <span className="score-number">{skipped}</span>
-          <span className="score-label">Skipped</span>
+          <span className="score-label">{t.skipped}</span>
         </div>
         <div className="score-item total">
           <span className="score-number">{percentage}%</span>
-          <span className="score-label">Score</span>
+          <span className="score-label">{t.score}</span>
         </div>
       </div>
 
       <button className="play-btn" onClick={onPlayAgain}>
-        Play Again
+        {t.playAgain}
       </button>
     </div>
   );

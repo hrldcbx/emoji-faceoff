@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { emojis, shuffleEmojis } from '../data/emojis';
+import { useTranslation } from '../App';
 
 export default function GameScreen({ totalRounds, onGameEnd }) {
+  const { t } = useTranslation();
   const [shuffledEmojis] = useState(() => shuffleEmojis(emojis));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -45,7 +47,7 @@ export default function GameScreen({ totalRounds, onGameEnd }) {
     <div className={`screen game-screen ${isRevealing ? 'revealing' : ''} ${lastAction ? `action-${lastAction}` : ''}`}>
       <div className="game-header">
         <div className="round-indicator">
-          {roundNumber} / {totalRounds}
+          <span>{roundNumber}</span> {t.of} {totalRounds}
         </div>
         <div className="score-display">
           <span className="score-correct">{score}</span>
@@ -65,14 +67,14 @@ export default function GameScreen({ totalRounds, onGameEnd }) {
           onClick={() => handleAction('skip')}
           disabled={isRevealing}
         >
-          Skip
+          {t.skip}
         </button>
         <button
           className="action-btn correct-btn"
           onClick={() => handleAction('correct')}
           disabled={isRevealing}
         >
-          Got it!
+          {t.gotIt}
         </button>
       </div>
 

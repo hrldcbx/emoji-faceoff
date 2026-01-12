@@ -1,24 +1,57 @@
 import { useState } from 'react';
+import { useTranslation } from '../App';
+import { getLanguageList } from '../data/translations';
 
-export default function StartScreen({ onStart, theme, onToggleTheme }) {
+export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSetLang }) {
   const [rounds, setRounds] = useState(10);
+  const [showLangPicker, setShowLangPicker] = useState(false);
+  const { t } = useTranslation();
 
   const roundOptions = [5, 10, 15, 20];
+  const languages = getLanguageList();
+  const currentLang = languages.find((l) => l.code === lang);
 
   return (
     <div className="screen start-screen">
-      <button className="theme-toggle" onClick={onToggleTheme} aria-label="Toggle theme">
-        {theme === 'light' ? '🌙' : '☀️'}
-      </button>
+      <div className="top-controls">
+        <button
+          className="lang-toggle"
+          onClick={() => setShowLangPicker(!showLangPicker)}
+          aria-label="Select language"
+        >
+          {currentLang?.flag}
+        </button>
+        <button className="theme-toggle" onClick={onToggleTheme} aria-label="Toggle theme">
+          {theme === 'light' ? '🌙' : '☀️'}
+        </button>
+      </div>
+
+      {showLangPicker && (
+        <div className="lang-picker">
+          {languages.map((language) => (
+            <button
+              key={language.code}
+              className={`lang-option ${lang === language.code ? 'active' : ''}`}
+              onClick={() => {
+                onSetLang(language.code);
+                setShowLangPicker(false);
+              }}
+            >
+              <span className="lang-flag">{language.flag}</span>
+              <span className="lang-name">{language.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="logo">
         <span className="logo-emoji">😜</span>
-        <h1>Emoji Faceoff</h1>
-        <p className="tagline">Mimic the emoji. Guess the face!</p>
+        <h1>{t.title}</h1>
+        <p className="tagline">{t.tagline}</p>
       </div>
 
       <div className="rounds-selector">
-        <label>Rounds</label>
+        <label>{t.rounds}</label>
         <div className="rounds-options">
           {roundOptions.map((num) => (
             <button
@@ -33,16 +66,15 @@ export default function StartScreen({ onStart, theme, onToggleTheme }) {
       </div>
 
       <button className="play-btn" onClick={() => onStart(rounds)}>
-        Play
+        {t.play}
       </button>
 
       <div className="instructions">
-        <h3>How to play</h3>
+        <h3>{t.howToPlay}</h3>
         <ol>
-          <li>One player holds the phone and sees the emoji</li>
-          <li>They mimic the expression for others to guess</li>
-          <li>Tap <strong>Got it!</strong> if someone guesses correctly</li>
-          <li>Tap <strong>Skip</strong> to pass</li>
+          {t.instructions.map((instruction, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: instruction }} />
+          ))}
         </ol>
       </div>
     </div>

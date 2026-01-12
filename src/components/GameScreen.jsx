@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { emojis, shuffleEmojis } from '../data/emojis';
+import { getEmojiName } from '../data/emojiNames';
 import { useTranslation } from '../App';
 
 export default function GameScreen({ totalRounds, onGameEnd }) {
-  const { t } = useTranslation();
+  const { lang, t } = useTranslation();
   const [shuffledEmojis] = useState(() => shuffleEmojis(emojis));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -58,7 +59,7 @@ export default function GameScreen({ totalRounds, onGameEnd }) {
 
       <div className="emoji-display">
         <span className="current-emoji">{currentEmoji.emoji}</span>
-        <span className="emoji-name">{currentEmoji.name}</span>
+        <span className="emoji-name">{getEmojiName(currentEmoji.name, lang)}</span>
       </div>
 
       <div className="action-buttons">

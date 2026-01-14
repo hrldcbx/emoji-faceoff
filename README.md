@@ -60,5 +60,5 @@ MIT - see [LICENSE](LICENSE)
 
 ## Links
 
-- [Support & FAQ](https://yourusername.github.io/emoji-faceoff/)
-- [Privacy Policy](https://yourusername.github.io/emoji-faceoff/privacy.html)
+- [Support & FAQ](https://hrldcbx.github.io/emoji-faceoff/)
+- [Privacy Policy](https://hrldcbx.github.io/emoji-faceoff/privacy.html)

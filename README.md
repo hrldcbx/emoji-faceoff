@@ -1,16 +1,64 @@
-# React + Vite
+# Emoji Faceoff 😜
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple party game where one player mimics an emoji and others guess which one it is. Perfect for kids, families, friends, and anyone who wants a quick laugh.
 
-Currently, two official plugins are available:
+## How to Play
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. One player holds the phone and sees an emoji
+2. They mimic the expression (no talking!)
+3. Other players try to guess which emoji it is
+4. Tap **Got it!** if someone guesses correctly, or **Skip** to pass
+5. See how many your group can get right!
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 100+ hand-picked mimicable emojis (faces, expressions, gestures)
+- 15 languages supported
+- Dark mode
+- Works offline
+- No accounts, no ads, no data collection
 
-## Expanding the ESLint configuration
+## Run Locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+Then open `http://localhost:5173` in your browser.
+
+To test on your phone, run with `--host`:
+
+```bash
+npm run dev -- --host
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+Output is in the `dist/` folder.
+
+## Tech Stack
+
+- React + Vite
+- Plain CSS (no frameworks)
+- Zero runtime dependencies beyond React
+
+## Languages
+
+- English, Swedish, Norwegian, Danish, Finnish, Icelandic
+- Chinese, Spanish, Portuguese, Japanese, Korean
+- German, French, Russian, Arabic, Hindi
+- Italian, Turkish, Indonesian
+
+## License
+
+MIT - see [LICENSE](LICENSE)
+
+## Links
+
+- [Support & FAQ](https://yourusername.github.io/emoji-faceoff/)
+- [Privacy Policy](https://yourusername.github.io/emoji-faceoff/privacy.html)

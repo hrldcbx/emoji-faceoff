@@ -357,7 +357,8 @@ body {
 .instructions-toggle.open {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom-color: transparent;
+  border-bottom-color: var(--color-border);
+  margin-bottom: -1px;
 }
 
 .toggle-icon {

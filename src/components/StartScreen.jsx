@@ -4,6 +4,7 @@ import { getLanguageList } from '../data/translations';
 
 export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSetLang }) {
   const [rounds, setRounds] = useState(10);
+  const [role, setRole] = useState('actor'); // 'actor' | 'guesser'
   const [showLangPicker, setShowLangPicker] = useState(false);
   const { t } = useTranslation();
 
@@ -50,29 +51,55 @@ export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSet
         <p className="tagline">{t.tagline}</p>
       </div>
 
-      <div className="rounds-selector">
-        <label>{t.rounds}</label>
-        <div className="rounds-options">
-          {roundOptions.map((num) => (
-            <button
-              key={num}
-              className={`round-btn ${rounds === num ? 'active' : ''}`}
-              onClick={() => setRounds(num)}
-            >
-              {num}
-            </button>
-          ))}
+      {/* Role Selector */}
+      <div className="role-selector">
+        <label>{t.selectRole}</label>
+        <div className="role-options">
+          <button
+            className={`role-btn ${role === 'actor' ? 'active' : ''}`}
+            onClick={() => setRole('actor')}
+          >
+            <span className="role-icon">🎭</span>
+            <span className="role-name">{t.actor}</span>
+            <span className="role-desc">{t.actorDesc}</span>
+          </button>
+          <button
+            className={`role-btn ${role === 'guesser' ? 'active' : ''}`}
+            onClick={() => setRole('guesser')}
+          >
+            <span className="role-icon">🤔</span>
+            <span className="role-name">{t.guesser}</span>
+            <span className="role-desc">{t.guesserDesc}</span>
+          </button>
         </div>
       </div>
 
-      <button className="play-btn" onClick={() => onStart(rounds)}>
+      {/* Only show rounds selector for actor */}
+      {role === 'actor' && (
+        <div className="rounds-selector">
+          <label>{t.rounds}</label>
+          <div className="rounds-options">
+            {roundOptions.map((num) => (
+              <button
+                key={num}
+                className={`round-btn ${rounds === num ? 'active' : ''}`}
+                onClick={() => setRounds(num)}
+              >
+                {num}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <button className="play-btn" onClick={() => onStart(rounds, role)}>
         {t.play}
       </button>
 
       <div className="instructions">
         <h3>{t.howToPlay}</h3>
         <ol>
-          {t.instructions.map((instruction, i) => (
+          {(role === 'guesser' ? t.guesserInstructions : t.instructions).map((instruction, i) => (
             <li key={i} dangerouslySetInnerHTML={{ __html: instruction }} />
           ))}
         </ol>

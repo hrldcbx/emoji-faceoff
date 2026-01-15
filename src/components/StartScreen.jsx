@@ -6,6 +6,7 @@ export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSet
   const [rounds, setRounds] = useState(10);
   const [role, setRole] = useState('actor'); // 'actor' | 'guesser'
   const [showLangPicker, setShowLangPicker] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
   const { t } = useTranslation();
 
   const roundOptions = [5, 10, 15, 20];
@@ -96,14 +97,24 @@ export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSet
         {t.play}
       </button>
 
-      <div className="instructions">
-        <h3>{t.howToPlay}</h3>
-        <ol>
-          {(role === 'guesser' ? t.guesserInstructions : t.instructions).map((instruction, i) => (
-            <li key={i} dangerouslySetInnerHTML={{ __html: instruction }} />
-          ))}
-        </ol>
-      </div>
+      {/* Collapsible Instructions */}
+      <button
+        className={`instructions-toggle ${showInstructions ? 'open' : ''}`}
+        onClick={() => setShowInstructions(!showInstructions)}
+      >
+        <span>{t.howToPlay}</span>
+        <span className="toggle-icon">{showInstructions ? '▲' : '▼'}</span>
+      </button>
+
+      {showInstructions && (
+        <div className="instructions">
+          <ol>
+            {(role === 'guesser' ? t.guesserInstructions : t.instructions).map((instruction, i) => (
+              <li key={i} dangerouslySetInnerHTML={{ __html: instruction }} />
+            ))}
+          </ol>
+        </div>
+      )}
     </div>
   );
 }

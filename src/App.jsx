@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, createContext, useContext } from 'react';
 import StartScreen from './components/StartScreen';
 import GameScreen from './components/GameScreen';
+import GuesserScreen from './components/GuesserScreen';
 import ScoreScreen from './components/ScoreScreen';
 import { translations, getDefaultLanguage } from './data/translations';
 import './App.css';
@@ -21,7 +22,7 @@ export function useTranslation() {
 }
 
 export default function App() {
-  const [gameState, setGameState] = useState('start'); // 'start' | 'playing' | 'end'
+  const [gameState, setGameState] = useState('start'); // 'start' | 'playing' | 'guessing' | 'end'
   const [totalRounds, setTotalRounds] = useState(10);
   const [results, setResults] = useState(null);
   const [theme, setTheme] = useState(getInitialTheme);
@@ -48,10 +49,14 @@ export default function App() {
     setLang(newLang);
   }, []);
 
-  const handleStart = useCallback((rounds) => {
+  const handleStart = useCallback((rounds, role) => {
     setTotalRounds(rounds);
     setResults(null);
-    setGameState('playing');
+    if (role === 'guesser') {
+      setGameState('guessing');
+    } else {
+      setGameState('playing');
+    }
   }, []);
 
   const handleGameEnd = useCallback((gameResults) => {
@@ -78,6 +83,9 @@ export default function App() {
         )}
         {gameState === 'playing' && (
           <GameScreen totalRounds={totalRounds} onGameEnd={handleGameEnd} />
+        )}
+        {gameState === 'guessing' && (
+          <GuesserScreen onPlayAgain={handlePlayAgain} />
         )}
         {gameState === 'end' && results && (
           <ScoreScreen

@@ -393,6 +393,69 @@ body {
   color: var(--color-primary);
 }
 
+/* ==================== MODE SELECTOR ==================== */
+.mode-selector {
+  width: 100%;
+  text-align: center;
+}
+
+.mode-selector label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mode-options {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 2px solid var(--color-border);
+  background: var(--color-card);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text);
+  min-width: 90px;
+}
+
+.mode-btn:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.mode-btn.active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: white;
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.mode-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.mode-name {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 /* ==================== ROLE SELECTOR ==================== */
 .role-selector {
   width: 100%;
@@ -530,6 +593,48 @@ body {
 
 .emoji-grid-item:active {
   transform: scale(0.95);
+}
+
+/* Character grid styles for non-emoji modes */
+.emoji-grid.character-grid {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.emoji-grid-item.character-grid-item {
+  aspect-ratio: auto;
+  padding: 12px 8px;
+  font-size: 14px;
+}
+
+.grid-item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.grid-item-emoji {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.grid-item-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* Result screen for character mode */
+.result-emoji.result-character {
+  font-size: 80px;
+  padding: 20px;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
 }
 
 .back-btn {
@@ -687,6 +792,19 @@ body {
   100% { transform: scale(1); opacity: 1; }
 }
 
+/* Character mode display */
+.emoji-display.character-mode {
+  gap: 16px;
+}
+
+.current-emoji.character-display {
+  font-size: min(30vw, 120px);
+  padding: 20px;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
+}
+
 .emoji-name {
   font-size: 18px;
   font-weight: 600;
@@ -697,6 +815,13 @@ body {
   backdrop-filter: blur(10px);
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
+}
+
+.character-mode .emoji-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text);
+  padding: 12px 24px;
 }
 
 /* Action Buttons */
@@ -739,6 +864,38 @@ body {
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px var(--color-skip-glow);
+}
+
+/* Don't Know Button */
+.dontknow-btn {
+  background: var(--color-card);
+  color: var(--color-text-light);
+  border: 2px solid var(--color-border);
+}
+
+.dontknow-btn:hover:not(:disabled) {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* Three button layout */
+.action-buttons.three-buttons {
+  flex-wrap: wrap;
+}
+
+.action-buttons.three-buttons .action-btn {
+  flex: 1 1 45%;
+  padding: 18px;
+  font-size: 16px;
+}
+
+.action-buttons.three-buttons .dontknow-btn {
+  flex: 1 1 100%;
+  order: -1;
+  padding: 14px;
+  font-size: 14px;
 }
 
 .correct-btn {

@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { useTranslation } from '../App';
 import { getLanguageList } from '../data/translations';
+import { getAllCharacterSets } from '../data/characterSets';
 
 export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSetLang }) {
   const [rounds, setRounds] = useState(10);
   const [role, setRole] = useState('actor'); // 'actor' | 'guesser'
+  const [gameMode, setGameMode] = useState('emojis'); // 'emojis' | 'fictional' | 'famous'
   const [showLangPicker, setShowLangPicker] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
   const { t } = useTranslation();
 
   const roundOptions = [5, 10, 15, 20];
   const languages = getLanguageList();
+  const characterSets = getAllCharacterSets();
   const currentLang = languages.find((l) => l.code === lang);
 
   return (
@@ -50,6 +53,23 @@ export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSet
         <span className="logo-emoji">😜</span>
         <h1>{t.title}</h1>
         <p className="tagline">{t.tagline}</p>
+      </div>
+
+      {/* Game Mode Selector */}
+      <div className="mode-selector">
+        <label>{t.selectMode}</label>
+        <div className="mode-options">
+          {characterSets.map((set) => (
+            <button
+              key={set.id}
+              className={`mode-btn ${gameMode === set.id ? 'active' : ''}`}
+              onClick={() => setGameMode(set.id)}
+            >
+              <span className="mode-icon">{set.icon}</span>
+              <span className="mode-name">{t.modes[set.id]}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Role Selector */}
@@ -93,7 +113,7 @@ export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSet
         </div>
       )}
 
-      <button className="play-btn" onClick={() => onStart(rounds, role)}>
+      <button className="play-btn" onClick={() => onStart(rounds, role, gameMode)}>
         {t.play}
       </button>
 

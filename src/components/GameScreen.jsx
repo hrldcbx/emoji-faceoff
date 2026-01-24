@@ -1,20 +1,32 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { emojis, shuffleEmojis } from '../data/emojis';
 import { getEmojiName } from '../data/emojiNames';
+import { getCharacterSet } from '../data/characterSets';
 import { useTranslation } from '../App';
 
-export default function GameScreen({ totalRounds, onGameEnd }) {
+export default function GameScreen({ totalRounds, onGameEnd, gameMode = 'emojis' }) {
   const { lang, t } = useTranslation();
-  const [shuffledEmojis] = useState(() => shuffleEmojis(emojis));
+
+  // Get characters based on game mode
+  const characters = useMemo(() => {
+    const characterSet = getCharacterSet(gameMode);
+    if (characterSet.useDefaultEmojis) {
+      // For emojis mode, use the default emojis with emoji/name structure
+      return shuffleEmojis(emojis.map(e => ({ display: e.emoji, name: e.name, isEmoji: true })));
+    }
+    return shuffleEmojis(characterSet.characters);
+  }, [gameMode]);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [skipped, setSkipped] = useState(0);
   const [isRevealing, setIsRevealing] = useState(false);
   const [lastAction, setLastAction] = useState(null);
 
-  const currentEmoji = shuffledEmojis[currentIndex % shuffledEmojis.length];
+  const currentCharacter = characters[currentIndex % characters.length];
   const roundNumber = currentIndex + 1;
   const isGameOver = roundNumber > totalRounds;
+  const isEmojiMode = gameMode === 'emojis';
 
   useEffect(() => {
     if (isGameOver) {
@@ -44,6 +56,11 @@ export default function GameScreen({ totalRounds, onGameEnd }) {
     return null;
   }
 
+  // Get display name - for emojis use translation, for characters use name directly
+  const displayName = currentCharacter.isEmoji
+    ? getEmojiName(currentCharacter.name, lang)
+    : currentCharacter.name;
+
   return (
     <div className={`screen game-screen ${isRevealing ? 'revealing' : ''} ${lastAction ? `action-${lastAction}` : ''}`}>
       <div className="game-header">
@@ -57,12 +74,14 @@ export default function GameScreen({ totalRounds, onGameEnd }) {
         </div>
       </div>
 
-      <div className="emoji-display">
-        <span className="current-emoji">{currentEmoji.emoji}</span>
-        <span className="emoji-name">{getEmojiName(currentEmoji.name, lang)}</span>
+      <div className={`emoji-display ${!isEmojiMode ? 'character-mode' : ''}`}>
+        <span className={`current-emoji ${!isEmojiMode ? 'character-display' : ''}`}>
+          {currentCharacter.display}
+        </span>
+        <span className="emoji-name">{displayName}</span>
       </div>
 
-      <div className="action-buttons">
+      <div className={`action-buttons ${!isEmojiMode ? 'three-buttons' : ''}`}>
         <button
           className="action-btn skip-btn"
           onClick={() => handleAction('skip')}
@@ -70,6 +89,15 @@ export default function GameScreen({ totalRounds, onGameEnd }) {
         >
           {t.skip}
         </button>
+        {!isEmojiMode && (
+          <button
+            className="action-btn dontknow-btn"
+            onClick={() => handleAction('skip')}
+            disabled={isRevealing}
+          >
+            {t.dontKnow}
+          </button>
+        )}
         <button
           className="action-btn correct-btn"
           onClick={() => handleAction('correct')}

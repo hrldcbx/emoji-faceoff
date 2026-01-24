@@ -24,6 +24,7 @@ export function useTranslation() {
 export default function App() {
   const [gameState, setGameState] = useState('start'); // 'start' | 'playing' | 'guessing' | 'end'
   const [totalRounds, setTotalRounds] = useState(10);
+  const [gameMode, setGameMode] = useState('emojis'); // 'emojis' | 'fictional' | 'famous'
   const [results, setResults] = useState(null);
   const [theme, setTheme] = useState(getInitialTheme);
   const [lang, setLang] = useState(getDefaultLanguage);
@@ -49,8 +50,9 @@ export default function App() {
     setLang(newLang);
   }, []);
 
-  const handleStart = useCallback((rounds, role) => {
+  const handleStart = useCallback((rounds, role, mode = 'emojis') => {
     setTotalRounds(rounds);
+    setGameMode(mode);
     setResults(null);
     if (role === 'guesser') {
       setGameState('guessing');
@@ -82,10 +84,10 @@ export default function App() {
           />
         )}
         {gameState === 'playing' && (
-          <GameScreen totalRounds={totalRounds} onGameEnd={handleGameEnd} />
+          <GameScreen totalRounds={totalRounds} onGameEnd={handleGameEnd} gameMode={gameMode} />
         )}
         {gameState === 'guessing' && (
-          <GuesserScreen onPlayAgain={handlePlayAgain} />
+          <GuesserScreen onPlayAgain={handlePlayAgain} gameMode={gameMode} />
         )}
         {gameState === 'end' && results && (
           <ScoreScreen

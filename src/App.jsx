@@ -24,7 +24,7 @@ export function useTranslation() {
 export default function App() {
   const [gameState, setGameState] = useState('start'); // 'start' | 'playing' | 'guessing' | 'end'
   const [totalRounds, setTotalRounds] = useState(10);
-  const [gameMode, setGameMode] = useState('emojis'); // 'emojis' | 'fictional' | 'famous'
+  const [gameMode, setGameMode] = useState('emojis');
   const [results, setResults] = useState(null);
   const [theme, setTheme] = useState(getInitialTheme);
   const [lang, setLang] = useState(getDefaultLanguage);

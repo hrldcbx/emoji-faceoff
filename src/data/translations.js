@@ -15,8 +15,6 @@ export const translations = {
     selectMode: 'Game Mode',
     modes: {
       emojis: 'Emojis',
-      fictional: 'Fictional Characters',
-      famous: 'Famous People',
     },
     rounds: 'Rounds',
     play: 'Play',
@@ -69,8 +67,6 @@ export const translations = {
     selectMode: 'Spelläge',
     modes: {
       emojis: 'Emojis',
-      fictional: 'Fiktiva karaktärer',
-      famous: 'Kända personer',
     },
     rounds: 'Rundor',
     play: 'Spela',
@@ -122,8 +118,6 @@ export const translations = {
     selectMode: 'Spillmodus',
     modes: {
       emojis: 'Emojier',
-      fictional: 'Fiktive karakterer',
-      famous: 'Kjente personer',
     },
     rounds: 'Runder',
     play: 'Spill',
@@ -175,8 +169,6 @@ export const translations = {
     selectMode: 'Spiltilstand',
     modes: {
       emojis: 'Emojis',
-      fictional: 'Fiktive karakterer',
-      famous: 'Kendte personer',
     },
     rounds: 'Runder',
     play: 'Spil',
@@ -228,8 +220,6 @@ export const translations = {
     selectMode: 'Pelitila',
     modes: {
       emojis: 'Emojit',
-      fictional: 'Fiktiiviset hahmot',
-      famous: 'Kuuluisat henkilöt',
     },
     rounds: 'Kierrokset',
     play: 'Pelaa',
@@ -281,8 +271,6 @@ export const translations = {
     selectMode: 'Leikhamur',
     modes: {
       emojis: 'Emojis',
-      fictional: 'Skáldaðar persónur',
-      famous: 'Frægir einstaklingar',
     },
     rounds: 'Umferðir',
     play: 'Spila',
@@ -335,8 +323,6 @@ export const translations = {
     selectMode: '游戏模式',
     modes: {
       emojis: '表情符号',
-      fictional: '虚构角色',
-      famous: '名人',
     },
     rounds: '回合',
     play: '开始',
@@ -388,8 +374,6 @@ export const translations = {
     selectMode: 'Modo de juego',
     modes: {
       emojis: 'Emojis',
-      fictional: 'Personajes ficticios',
-      famous: 'Personas famosas',
     },
     rounds: 'Rondas',
     play: 'Jugar',
@@ -441,8 +425,6 @@ export const translations = {
     selectMode: 'Modo de jogo',
     modes: {
       emojis: 'Emojis',
-      fictional: 'Personagens fictícios',
-      famous: 'Pessoas famosas',
     },
     rounds: 'Rodadas',
     play: 'Jogar',
@@ -494,8 +476,6 @@ export const translations = {
     selectMode: 'ゲームモード',
     modes: {
       emojis: '絵文字',
-      fictional: '架空のキャラクター',
-      famous: '有名人',
     },
     rounds: 'ラウンド',
     play: 'スタート',
@@ -547,8 +527,6 @@ export const translations = {
     selectMode: '게임 모드',
     modes: {
       emojis: '이모지',
-      fictional: '가상 캐릭터',
-      famous: '유명인',
     },
     rounds: '라운드',
     play: '시작',
@@ -600,8 +578,6 @@ export const translations = {
     selectMode: 'Spielmodus',
     modes: {
       emojis: 'Emojis',
-      fictional: 'Fiktive Charaktere',
-      famous: 'Berühmte Personen',
     },
     rounds: 'Runden',
     play: 'Spielen',
@@ -653,8 +629,6 @@ export const translations = {
     selectMode: 'Mode de jeu',
     modes: {
       emojis: 'Emojis',
-      fictional: 'Personnages fictifs',
-      famous: 'Célébrités',
     },
     rounds: 'Manches',
     play: 'Jouer',
@@ -706,8 +680,6 @@ export const translations = {
     selectMode: 'Режим игры',
     modes: {
       emojis: 'Эмодзи',
-      fictional: 'Вымышленные персонажи',
-      famous: 'Знаменитости',
     },
     rounds: 'Раунды',
     play: 'Играть',
@@ -760,8 +732,6 @@ export const translations = {
     selectMode: 'وضع اللعب',
     modes: {
       emojis: 'إيموجي',
-      fictional: 'شخصيات خيالية',
-      famous: 'مشاهير',
     },
     rounds: 'الجولات',
     play: 'ابدأ',
@@ -813,8 +783,6 @@ export const translations = {
     selectMode: 'गेम मोड',
     modes: {
       emojis: 'इमोजी',
-      fictional: 'काल्पनिक पात्र',
-      famous: 'मशहूर लोग',
     },
     rounds: 'राउंड',
     play: 'खेलें',
@@ -866,8 +834,6 @@ export const translations = {
     selectMode: 'Modalità di gioco',
     modes: {
       emojis: 'Emoji',
-      fictional: 'Personaggi fittizi',
-      famous: 'Persone famose',
     },
     rounds: 'Round',
     play: 'Gioca',
@@ -919,8 +885,6 @@ export const translations = {
     selectMode: 'Oyun Modu',
     modes: {
       emojis: 'Emojiler',
-      fictional: 'Kurgusal karakterler',
-      famous: 'Ünlü kişiler',
     },
     rounds: 'Tur',
     play: 'Oyna',
@@ -972,8 +936,6 @@ export const translations = {
     selectMode: 'Mode Permainan',
     modes: {
       emojis: 'Emoji',
-      fictional: 'Karakter fiksi',
-      famous: 'Orang terkenal',
     },
     rounds: 'Ronde',
     play: 'Main',

@@ -6,7 +6,7 @@ import { getAllCharacterSets } from '../data/characterSets';
 export default function StartScreen({ onStart, theme, onToggleTheme, lang, onSetLang }) {
   const [rounds, setRounds] = useState(10);
   const [role, setRole] = useState('actor'); // 'actor' | 'guesser'
-  const [gameMode, setGameMode] = useState('emojis'); // 'emojis' | 'fictional' | 'famous'
+  const [gameMode, setGameMode] = useState('emojis');
   const [showLangPicker, setShowLangPicker] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
   const { t } = useTranslation();
